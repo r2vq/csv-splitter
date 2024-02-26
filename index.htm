@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#files {
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="uploadForm">
+        <label for="uploadFile">Upload CSV</label>
+        <input type="file" id="uploadFile" name="uploadFile" accept=".csv"></input>
+    </form>
+    <div id="files"></div>
+    <script>
+        const maxSize = 100;
+        let upload = document.getElementById("uploadForm");
+        let filesDiv = document.getElementById("files");
+        upload.addEventListener("change", (e) => {
+            let file = e.target.files[0];
+            if (file && file.name) {
+                csvToArray(file);
+            } else {
+                console.log("Invalid file");
+            }
+        });
+
+        function csvToArray(file) {
+            let reader = new FileReader();
+            reader.onload = e => {
+                let lines = [];
+                let text = e.target.result.split("\n");
+                text.forEach(element => {
+                    if (element.length > 0) lines.push(element.split("\,"));
+                });
+                let arrays = arrayToArrays(lines);
+                let files = arraysToFiles(arrays, file.name);
+            };
+            reader.readAsText(file);
+        }
+
+        function arraysToFiles(arrays, fileName) {
+            let count = 0;
+            for(let i = 0; i < arrays.length; i++) {
+                let arrayRow = arrays[i];
+                count += 1;
+                let name = fileName.replace(/.csv$/, `-${count}.csv`);
+                let body = "";
+                for (let j = 0; j < arrayRow.length; j++) {
+                    body += `${arrayRow[j]}\n`;
+                }
+                let file = new Blob([body], {
+                    type: "text/plain"
+                });
+                let link = document.createElement("a");
+                link.href = URL.createObjectURL(file);
+                link.download = name;
+                link.text = name;
+                filesDiv.appendChild(link);
+            }
+        }
+
+        function arrayToArrays(lines) {
+            let headers;
+            let body = [];
+            let current;
+            let lineCount = 0;
+            for(let i = 0; i < lines.length; i++) {
+                if (i === 0) {
+                    headers = lines[i];
+                    continue;
+                }
+
+                if (lineCount === 0) {
+                    current = [headers];
+                    body.push(current);
+                }
+                current.push(lines[i]);
+                lineCount += 1;
+                if (lineCount >= maxSize) {
+                    lineCount = 0;
+                }
+            }
+            return body;
+        }
+    </script>
+</body>
+
+</html>
