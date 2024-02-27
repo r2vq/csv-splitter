@@ -8,7 +8,7 @@ export function parse(file, onParse, maxLines) {
 
 const arrayToArrays = (array, maxLines) => {
     let arrays = [];
-    if (array.length == 0) {
+    if (array.length === 0) {
         return arrays;
     }
 
