@@ -5,6 +5,7 @@
 }
 
 .files-list .file {
+    font-family: 'Courier New', Courier, monospace;
     padding: 5px;
 }
 

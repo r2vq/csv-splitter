@@ -5,9 +5,7 @@ function Files({ files }) {
         Your zip file is downloading.
     </div>;
 
-    const empty = <div className="files-empty">
-        Click "Choose File"
-    </div>
+    const empty = <></>;
 
     return <div className="files-list">
         {(files && files.length > 0) ? summary : empty}
