@@ -38,7 +38,7 @@ function App() {
     onFilesChange({
       names: names,
     });
-    zip.generateAsync({ type: "blob"}).then(content => saveAs(content, `${fileName}.zip`));
+    zip.generateAsync({ type: "blob" }).then(content => saveAs(content, `${fileName}.zip`));
   };
 
   const saveAs = (file, fileName) => {
