@@ -26,7 +26,6 @@ function App() {
   };
 
   const onParse = (blobs, fileName) => {
-    console.log(blobs, fileName);
     let count = 0;
     let names = [];
     let zip = new JSZip();
