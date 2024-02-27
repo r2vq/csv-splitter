@@ -1,0 +1,14 @@
+.files-list {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.files-list .file {
+    padding: 5px;
+}
+
+.files-list .files-summary {
+    font-size: larger;
+    padding: 10px;
+}
