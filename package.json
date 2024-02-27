@@ -1,7 +1,7 @@
 {
   "name": "csv-splitter",
   "version": "0.1.0",
-  "homepage": "https://r2vq.github.io/svg-splitter",
+  "homepage": "https://r2vq.github.io/csv-splitter",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
