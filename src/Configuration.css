@@ -1,4 +1,14 @@
+.configuration-input {
+    border-radius: 5px;
+    font-size: large;
+    height: 25px;
+    padding: 10px;
+    text-align: center;
+    width: 100px;
+}
+
 .configuration-label {
+    align-items: center;
     display: flex;
     gap: 10px;
 }

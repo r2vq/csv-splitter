@@ -26,7 +26,6 @@ function App() {
   };
 
   const onParse = (blobs, fileName) => {
-    console.log(blobs, fileName);
     let count = 0;
     let names = [];
     let zip = new JSZip();
@@ -39,7 +38,7 @@ function App() {
     onFilesChange({
       names: names,
     });
-    zip.generateAsync({ type: "blob"}).then(content => saveAs(content, `${fileName}.zip`));
+    zip.generateAsync({ type: "blob" }).then(content => saveAs(content, `${fileName}.zip`));
   };
 
   const saveAs = (file, fileName) => {
